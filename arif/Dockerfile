@@ -1,3 +1,14 @@
-FROM ubuntu:latest
+FROM centos:latest
 
-CMD ["/bin/sh", "-c", "sleep 20 && touch file1.txt file2.txt file3.txt file4-ubuntu.txt && sleep 60"]
+WORKDIR /appdir
+
+
+RUN dnf --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos -y \
+    && dnf distro-sync -y \
+    && yum update -y \
+    && yum install -y python3 \
+    && pip-3 install flask 
+
+COPY . /appdir
+
+CMD ["/usr/bin/python3", "helloapp.py"]
