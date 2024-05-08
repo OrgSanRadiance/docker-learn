@@ -29,6 +29,7 @@ Build docker Image
    $ docker run --name hello-app-v2 --net=host -d helloapp:v2.0.1
 
 Additional Commands
+-------------------
 1. Check running container
 
    $ docker ps
